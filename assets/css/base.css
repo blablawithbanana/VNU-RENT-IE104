@@ -1,0 +1,98 @@
+:root {
+  --ct-yellow: #FFBA00;
+  --ct-yellow-dark: #E5A700;
+  --ct-orange: #FF8800;
+  --ct-orange-hover: #E07000;
+  --ct-red-price: #D0021B;
+  --ct-bg-gray: #F4F4F4;
+  --ct-card-bg: #FFFFFF;
+  --ct-text-main: #222222;
+  --ct-text-muted: #666666;
+  --ct-border: #E5E5E5;
+  --ct-radius: 8px;
+}
+
+body {
+  font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  background-color: var(--ct-bg-gray);
+  color: var(--ct-text-main);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Navbar chuẩn Chợ Tốt */
+.ct-navbar {
+  background-color: var(--ct-yellow);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+  padding: 10px 0;
+}
+
+.ct-brand {
+  font-weight: 800;
+  font-size: 1.35rem;
+  color: var(--ct-text-main) !important;
+  text-decoration: none;
+  letter-spacing: -0.5px;
+}
+
+.ct-nav-link {
+  color: var(--ct-text-main) !important;
+  font-weight: 600;
+  font-size: 0.95rem;
+  padding: 6px 12px !important;
+  border-radius: 6px;
+  transition: background 0.2s;
+}
+
+.ct-nav-link:hover {
+  background-color: rgba(255, 255, 255, 0.35);
+}
+
+.btn-ct-orange {
+  background-color: var(--ct-orange);
+  color: #FFFFFF !important;
+  font-weight: 700;
+  border: none;
+  border-radius: var(--ct-radius);
+  padding: 8px 18px;
+  transition: background 0.2s;
+}
+
+.btn-ct-orange:hover {
+  background-color: var(--ct-orange-hover);
+}
+
+/* Card & Giá thuê dùng chung */
+.ct-card {
+  background: var(--ct-card-bg);
+  border: 1px solid var(--ct-border);
+  border-radius: var(--ct-radius);
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+  overflow: hidden;
+}
+
+.ct-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+.ct-price {
+  color: var(--ct-red-price);
+  font-weight: 700;
+  font-size: 1.05rem;
+}
+
+main#app-main {
+  flex: 1;
+  padding: 24px 0 40px;
+}
+
+/* Footer dùng chung */
+.ct-footer {
+  background-color: #FFFFFF;
+  border-top: 1px solid var(--ct-border);
+  padding: 24px 0;
+  font-size: 0.9rem;
+  color: var(--ct-text-muted);
+}

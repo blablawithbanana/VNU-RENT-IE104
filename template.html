@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>VNU-RENT</title>
+  <!-- Bootstrap 5.3 & Bootstrap Icons CDN -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
+  <!-- CSS Gốc Dùng Chung -->
+  <link rel="stylesheet" href="assets/css/base.css">
+  <!-- CSS Riêng của từng thành viên (thay fe1.css bằng fe2.css hoặc fe3.css) -->
+  <link rel="stylesheet" href="assets/css/fe1.css">
+</head>
+<body>
+
+  <!-- HEADER / NAVBAR DÙNG CHUNG (KHÔNG SỬA ID) -->
+  <header class="ct-navbar sticky-top" id="global-navbar">
+    <div class="container d-flex align-items-center justify-content-between">
+      <a href="index.html" class="ct-brand d-flex align-items-center gap-2">
+        <i class="bi bi-bag-heart-fill text-danger"></i>
+        <span>VNU-RENT</span>
+      </a>
+      <nav class="d-flex align-items-center gap-2">
+        <a href="index.html" class="nav-link ct-nav-link"><i class="bi bi-house-door me-1"></i>Trang chủ</a>
+        <a href="about.html" class="nav-link ct-nav-link"><i class="bi bi-info-circle me-1"></i>Giới thiệu</a>
+        <a href="borrow-requests.html" class="nav-link ct-nav-link"><i class="bi bi-megaphone me-1"></i>Cần mượn</a>
+        <a href="chat.html" class="nav-link ct-nav-link" id="nav-chat-link"><i class="bi bi-chat-dots me-1"></i>Chat</a>
+        <a href="auth.html" class="nav-link ct-nav-link" id="nav-auth-link"><i class="bi bi-person-circle me-1"></i><span id="nav-user-label">Đăng nhập</span></a>
+        <a href="post-item.html" class="btn btn-ct-orange ms-2" id="nav-post-btn"><i class="bi bi-pencil-square me-1"></i>Đăng tin</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- PHẦN NỘI DUNG CHÍNH: 3 THÀNH VIÊN CHỈ CODE BÊN TRONG THẺ <main> NÀY -->
+  <main id="app-main">
+    <div class="container">
+      <!-- Code giao diện từng trang đặt tại đây -->
+    </div>
+  </main>
+
+  <!-- FOOTER DÙNG CHUNG -->
+  <footer class="ct-footer" id="global-footer">
+    <div class="container d-flex flex-wrap justify-content-between align-items-center">
+      <div>
+        <strong class="text-dark">Nền tảng cho mượn đồ dùng sinh viên Làng ĐHQG TP.HCM - VNU-RENT</strong>
+        <p class="mb-0 mt-1">Đồ án môn IE104 - Internet và Công nghệ Web | Trường ĐH Công nghệ Thông tin (UIT)</p>
+      </div>
+      <div class="text-end">
+        <span>Nhóm 6 &copy; 2026</span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Bootstrap JS Bundle -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  <!-- JS Giao diện của thành viên (thay ui-fe1.js bằng ui-fe2.js hoặc ui-fe3.js) -->
+  <script src="assets/js/ui-fe1.js"></script>
+  <!-- Nơi Antigravity sẽ tự động nhúng script Back-end sau khi ghép bài -->
+</body>
+</html>

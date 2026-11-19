@@ -1,6 +1,14 @@
-.DS_Store, 
-Thumbs.db, 
-.env, 
-.env.local, 
-.vscode/, 
+# Biến môi trường & Khóa bí mật (Chặn tuyệt đối lộ GEMINI_API_KEY)
+.env
+.env.local
+.env.*.local
+
+# Thư mục tạm của Vercel & Node
+.vercel
 node_modules/
+
+# File rác hệ điều hành & IDE
+.DS_Store
+Thumbs.db
+.vscode/settings.json
+*.log

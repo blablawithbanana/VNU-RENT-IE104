@@ -1,9 +1,0 @@
-3 nhánh
-+) Github và 3 thg em
-+) Antigravity (Git worktree)
-+) Codex (Git worktree)
-
-Cần làm:
-+) Thiết lập database (Supabase)
-+) Thiết kế file .md 
-+) khái quát plan, tiến độ dự án cho nhóm

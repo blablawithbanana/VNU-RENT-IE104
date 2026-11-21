@@ -96,3 +96,28 @@ main#app-main {
   font-size: 0.9rem;
   color: var(--ct-text-muted);
 }
+
+/* Chuẩn hóa tỷ lệ ảnh thẻ sản phẩm & giá miễn phí dùng chung */
+.ct-card-img {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  background-color: #EAEAEA;
+  display: block;
+}
+
+.ct-price-free {
+  color: #198754;
+  font-weight: 700;
+  font-size: 1.05rem;
+}
+
+.ct-nav-badge {
+  position: absolute;
+  top: 2px;
+  right: 2px;
+  width: 9px;
+  height: 9px;
+  background-color: var(--ct-red-price);
+  border-radius: 50%;
+}

@@ -7,32 +7,60 @@
   <!-- Bootstrap 5.3 & Bootstrap Icons CDN -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
-  <!-- CSS Gốc Dùng Chung -->
+  <!-- CSS Gốc Dùng Chung (KHÔNG SỬA) -->
   <link rel="stylesheet" href="assets/css/base.css">
   <!-- CSS Riêng của từng thành viên (thay fe1.css bằng fe2.css hoặc fe3.css) -->
   <link rel="stylesheet" href="assets/css/fe1.css">
 </head>
 <body>
 
-  <!-- HEADER / NAVBAR DÙNG CHUNG (KHÔNG SỬA ID) -->
-  <header class="ct-navbar sticky-top" id="global-navbar">
-    <div class="container d-flex align-items-center justify-content-between">
-      <a href="index.html" class="ct-brand d-flex align-items-center gap-2">
-        <i class="bi bi-bag-heart-fill text-danger"></i>
-        <span>VNU-RENT</span>
-      </a>
-      <nav class="d-flex align-items-center gap-2">
-        <a href="index.html" class="nav-link ct-nav-link"><i class="bi bi-house-door me-1"></i>Trang chủ</a>
-        <a href="about.html" class="nav-link ct-nav-link"><i class="bi bi-info-circle me-1"></i>Giới thiệu</a>
-        <a href="borrow-requests.html" class="nav-link ct-nav-link"><i class="bi bi-megaphone me-1"></i>Cần mượn</a>
-        <a href="chat.html" class="nav-link ct-nav-link" id="nav-chat-link"><i class="bi bi-chat-dots me-1"></i>Chat</a>
-        <a href="auth.html" class="nav-link ct-nav-link" id="nav-auth-link"><i class="bi bi-person-circle me-1"></i><span id="nav-user-label">Đăng nhập</span></a>
-        <a href="post-item.html" class="btn btn-ct-orange ms-2" id="nav-post-btn"><i class="bi bi-pencil-square me-1"></i>Đăng tin</a>
-      </nav>
-    </div>
+  <!-- HEADER / NAVBAR DÙNG CHUNG RESPONSIVE (KHÔNG SỬA ID) -->
+  <header class="sticky-top">
+    <nav class="navbar navbar-expand-lg ct-navbar" id="global-navbar">
+      <div class="container">
+        <a href="index.html" class="ct-brand d-flex align-items-center gap-2">
+          <i class="bi bi-bag-heart-fill text-danger"></i>
+          <span>VNU-RENT</span>
+        </a>
+
+        <!-- Nút thu gọn Menu trên điện thoại -->
+        <button class="navbar-toggler border-0 shadow-none" type="button" data-bs-toggle="collapse" data-bs-target="#globalNavbarMenu" aria-controls="globalNavbarMenu" aria-expanded="false" aria-label="Mở menu">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse justify-content-end" id="globalNavbarMenu">
+          <ul class="navbar-nav align-items-lg-center gap-1 gap-lg-2 mt-2 mt-lg-0">
+            <li class="nav-item">
+              <a href="index.html" class="nav-link ct-nav-link"><i class="bi bi-house-door me-1"></i>Trang chủ</a>
+            </li>
+            <li class="nav-item">
+              <a href="about.html" class="nav-link ct-nav-link"><i class="bi bi-info-circle me-1"></i>Giới thiệu</a>
+            </li>
+            <li class="nav-item">
+              <a href="borrow-requests.html" class="nav-link ct-nav-link"><i class="bi bi-megaphone me-1"></i>Cần mượn</a>
+            </li>
+            <li class="nav-item">
+              <a href="chat.html" class="nav-link ct-nav-link position-relative" id="nav-chat-link">
+                <i class="bi bi-chat-dots me-1"></i>Chat
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="auth.html" class="nav-link ct-nav-link" id="nav-auth-link">
+                <i class="bi bi-person-circle me-1"></i><span id="nav-user-label">Đăng nhập</span>
+              </a>
+            </li>
+            <li class="nav-item ms-lg-2 mt-2 mt-lg-0">
+              <a href="post-item.html" class="btn btn-ct-orange w-100 w-lg-auto" id="nav-post-btn">
+                <i class="bi bi-pencil-square me-1"></i>Đăng tin
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
   </header>
 
-  <!-- PHẦN NỘI DUNG CHÍNH: 3 THÀNH VIÊN CHỈ CODE BÊN TRONG THẺ <main> NÀY -->
+  <!-- PHẦN NỘI DUNG CHÍNH: CÁC THÀNH VIÊN CHỈ CODE BÊN TRONG THẺ <main> NÀY -->
   <main id="app-main">
     <div class="container">
       <!-- Code giao diện từng trang đặt tại đây -->
@@ -41,21 +69,27 @@
 
   <!-- FOOTER DÙNG CHUNG -->
   <footer class="ct-footer" id="global-footer">
-    <div class="container d-flex flex-wrap justify-content-between align-items-center">
+    <div class="container d-flex flex-wrap justify-content-between align-items-center gap-2">
       <div>
         <strong class="text-dark">Nền tảng cho mượn đồ dùng sinh viên Làng ĐHQG TP.HCM - VNU-RENT</strong>
         <p class="mb-0 mt-1">Đồ án môn IE104 - Internet và Công nghệ Web | Trường ĐH Công nghệ Thông tin (UIT)</p>
       </div>
-      <div class="text-end">
+      <div class="text-md-end">
         <span>Nhóm 6 &copy; 2026</span>
       </div>
     </div>
   </footer>
 
-  <!-- Bootstrap JS Bundle -->
+  <!-- 1. Bootstrap JS Bundle & Supabase CDN -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-  <!-- JS Giao diện của thành viên (thay ui-fe1.js bằng ui-fe2.js hoặc ui-fe3.js) -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+  <!-- 2. JS Giao diện của thành viên (đổi thành ui-fe2.js hoặc ui-fe3.js theo trang) -->
   <script src="assets/js/ui-fe1.js"></script>
-  <!-- Nơi Antigravity sẽ tự động nhúng script Back-end sau khi ghép bài -->
+
+  <!-- 3. JS Dịch vụ Supabase dùng chung & Logic từng trang -->
+  <script src="assets/js/services/supabase-config.js"></script>
+  <!-- <script src="assets/js/services/catalog-requests-service.js"></script> -->
+  <!-- <script src="assets/js/services/ai-assistant-service.js"></script> -->
 </body>
 </html>

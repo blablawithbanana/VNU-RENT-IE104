@@ -80,3 +80,67 @@ vnu-rent-ie104/
             ├── profile-service.js       # [TV3] Logic DB cho profile (sửa hồ sơ, đổi trạng thái, xóa tin)
             ├── chat-service.js          # [Leader] Logic Chat P2P Realtime + Tin nhắn mẫu nhanh
             └── ai-assistant-service.js  # [Leader] Widget AI gọi /api/ai-chat + đọc bảng items
+
+            ```
+
+---
+
+## 4. QUY CHUẨN DESIGN SYSTEM & 4 TRẠNG THÁI GIAO DIỆN
+- **Màu sắc:** Dùng duy nhất biến trong `assets/css/base.css` (`--ct-yellow: #FFBA00`, `--ct-orange: #FF8800`, `--ct-red-price: #D0021B`, `--ct-bg-gray: #F4F4F4`).
+- **Ảnh Card sản phẩm:** Dùng class `.ct-card-img` (`aspect-ratio: 4 / 3; width: 100%; object-fit: cover;`) để lưới sản phẩm thẳng hàng.
+- **Định dạng giá (`window.formatRentPrice(amount, unit)`):** `0` $\rightarrow$ `"Miễn phí"` (`.ct-price-free`), `> 0` $\rightarrow$ `"15.000đ / ngày"` (`.ct-price`).
+- **Badge trạng thái:** `available` $\rightarrow$ `<span class="badge bg-success">Còn trống</span>`; `rented` $\rightarrow$ `<span class="badge bg-secondary">Đang cho mượn</span>`.
+- **4 Trạng thái bắt buộc trên mọi trang có tải dữ liệu:** Loading (`spinner-border text-warning`), Empty State, Error (`.alert.alert-danger`), Responsive (Desktop 4 cột / Mobile 1–2 cột).
+
+---
+
+## 5. RÀNG BUỘC DATABASE & GIỚI HẠN UPLOAD FILE
+- **4 bảng (`supabase/schema.sql`):**
+  - `profiles` (tự tạo bằng Trigger `handle_new_user` khi đăng ký Email hoặc Google OAuth).
+  - `items` (`category`: `dien-tu|tai-lieu|quan-ao|dung-cu`, `price_amount` INTEGER >= 0, `price_unit`: `giờ|ngày|tuần|lần`, `status`: `available|rented`).
+  - `borrow_requests` (`status`: `open|closed`).
+  - `messages` (`media_type`: `text|image|video`, `is_read`, đã bật `supabase_realtime`).
+- **Giới hạn file trước khi đẩy lên Bucket `media`:** Ảnh $\le$ **2 MB**, Video ngắn $\le$ **10 MB**.
+
+---
+
+## 6. HỢP ĐỒNG ÁNH XẠ FE $\leftrightarrow$ DB (ID, URL PARAMS & `window.*`)
+### Quy tắc JS giao diện (`ui-fe*.js`)
+1. Chỉ xử lý hiển thị (tab, modal, preview); giữ nguyên file gốc trong `<input type="file">`.
+2. Đóng gói hàm điều khiển UI vào `window.*`.
+3. **Không chặn sự kiện `submit`** trên bất kỳ `<form>` nào.
+
+### Quy ước URL Params
+- `category.html?cat=<mã_hạng_mục>&q=<từ_khóa>`
+- `item-detail.html?id=<item_uuid>`
+- `chat.html?partner_id=<user_uuid>&item_id=<item_uuid_nếu_có>`
+- `auth.html?redirect=<tên_trang_cần_quay_lại>`
+
+### Bảng ID bắt buộc theo từng thành viên
+- **Navbar dùng chung (`template.html`):** `#global-navbar`, `#nav-chat-link`, `#nav-auth-link`, `#nav-user-label`, `#nav-post-btn`. Khi đã đăng nhập, `supabase-config.js` tự đổi `#nav-auth-link` `href="profile.html"` và đổi `#nav-user-label` thành tên người dùng.
+- **TV1 (`index.html`, `category.html`, `borrow-requests.html` + `ui-fe1.js`):**
+  - `index.html`: `#search-form`, `#search-input` (`q`), `#search-btn`, `#category-nav-list`, `#home-items-grid`, `#home-requests-grid`, `#view-all-requests-btn`.
+  - `category.html`: `#category-title`, `#filter-category`, `#filter-area`, `#filter-price-sort` (`newest|price_asc|price_desc|free_only`), `#category-search-input`, `#category-items-grid`, `#category-empty-state`.
+  - `borrow-requests.html`: `#open-request-modal-btn`, `#requests-list-grid`, `#requests-empty-state`, Modal `#create-request-modal` chứa `#create-request-form` (`#req-item-name`, `#req-image-input`, `#req-image-preview`, `#req-desired-price`, `#req-desired-duration`, `#req-note`, `#req-submit-btn`).
+  - Hàm `window.*`: `window.openRequestModal()`, `window.closeRequestModal()`.
+- **TV2 (`auth.html`, `post-item.html`, `item-detail.html` + `ui-fe2.js`):**
+  - `auth.html`: `#tab-login-btn`, `#tab-register-btn`, `#auth-alert`, `#login-form` (`#login-email`, `#login-password`, `#login-submit-btn`), `#register-form` (`#reg-username`, `#reg-email`, `#reg-phone`, `#reg-area`, `#reg-password`, `#reg-confirm-password`, `#reg-submit-btn`), `#oauth-google-btn`, `#oauth-facebook-btn`.
+  - `post-item.html`: `#post-item-alert`, `#post-item-form` (`#post-image-input`, `#post-image-preview`, `#post-title`, `#post-category`, `#post-description`, `#post-price-amount`, `#post-price-unit`, `#post-duration`, `#post-area`, `#post-contact-name`, `#post-contact-phone`, `#post-submit-btn`).
+  - `item-detail.html`: `#detail-image`, `#detail-title`, `#detail-status-badge`, `#detail-price`, `#detail-duration`, `#detail-category`, `#detail-area`, `#detail-description`, `#detail-owner-name`, `#detail-owner-phone`, `#detail-contact-btn`, `#owner-action-panel` (chỉ hiện với chủ tin, chứa `#btn-toggle-item-status` & `#btn-delete-item`).
+  - Hàm `window.*`: `window.switchAuthTab('login'|'register')`, `window.resetPostImagePreview()`.
+- **TV3 (`about.html`, `profile.html`, giao diện `chat.html` + `ui-fe3.js`) & Leader (`chat-service.js`):**
+  - `profile.html`: `#profile-avatar-img`, `#profile-avatar-input`, `#profile-form` (`#profile-username`, `#profile-email`, `#profile-phone`, `#profile-area`, `#profile-save-btn`), `#profile-alert`, `#btn-logout`, `#my-items-list`, `#my-requests-list`.
+  - `chat.html`: `#chat-conversations-list`, `#chat-partner-name`, `#chat-item-context`, `#chat-messages-container`, `#chat-quick-replies`, `#chat-media-preview-box` (`#chat-img-preview`, `#chat-video-preview`), `#chat-message-form` (`#chat-media-input`, `#chat-text-input`, `#chat-send-btn`).
+  - Hàm `window.*`: `window.switchProfileTab('items'|'requests')`, `window.clearChatMediaPreview()`, `window.scrollToBottomChat()`.
+
+---
+
+## 7. ĐẶC TẢ TRỢ LÝ AI (`VNU-RENT AI`)
+- **Endpoint:** `POST /api/ai-chat` (`api/ai-chat.js`, đọc `process.env.GEMINI_API_KEY`).
+- **Input:** `{ "message": "...", "itemsContext": [...] }` $\rightarrow$ **Output:** `{ "reply": "...", "suggestedItemIds": [...] }`.
+
+---
+
+## 8. THỨ TỰ NHÚNG `<script>` & CHECKLIST NGHIỆM THU LOCAL
+- Thứ tự cuối `</body>`: `bootstrap.bundle.min.js` $\rightarrow$ `@supabase/supabase-js@2` $\rightarrow$ `ui-fe*.js` $\rightarrow$ `supabase-config.js` $\rightarrow$ `*-service.js` $\rightarrow$ `ai-assistant-service.js`.
+- Kiểm thử đủ 6 luồng trước khi Merge PR: Đăng ký/Đăng nhập $\rightarrow$ Đăng tin có ảnh $\rightarrow$ Lọc theo danh mục/giá $\rightarrow$ Chủ tin đổi trạng thái/xóa tin & sửa Profile $\rightarrow$ Chat Realtime 2 trình duyệt gửi chữ/ảnh/video/mẫu nhanh $\rightarrow$ Hỏi Trợ lý AI trả về link đồ thật.

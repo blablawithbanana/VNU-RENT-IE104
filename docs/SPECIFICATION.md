@@ -81,7 +81,7 @@ vnu-rent-ie104/
             ├── chat-service.js          # [Leader] Logic Chat P2P Realtime + Tin nhắn mẫu nhanh
             └── ai-assistant-service.js  # [Leader] Widget AI gọi /api/ai-chat + đọc bảng items
 
-            ```
+```
 
 ---
 

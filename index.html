@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>VNU-RENT | Mượn đồ trong Làng ĐHQG</title>
+  <link rel="icon" href="data:,">
+  <!-- Bootstrap 5.3 & Bootstrap Icons CDN -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
+  <!-- CSS Gốc Dùng Chung (KHÔNG SỬA) -->
+  <link rel="stylesheet" href="assets/css/base.css">
+  <!-- CSS Riêng của từng thành viên (thay fe1.css bằng fe2.css hoặc fe3.css) -->
+  <link rel="stylesheet" href="assets/css/fe1.css">
+</head>
+<body>
+
+  <!-- HEADER / NAVBAR DÙNG CHUNG RESPONSIVE (KHÔNG SỬA ID) -->
+  <header class="sticky-top">
+    <nav class="navbar navbar-expand-lg ct-navbar" id="global-navbar">
+      <div class="container">
+        <a href="index.html" class="ct-brand d-flex align-items-center gap-2">
+          <i class="bi bi-bag-heart-fill text-danger"></i>
+          <span>VNU-RENT</span>
+        </a>
+
+        <!-- Nút thu gọn Menu trên điện thoại -->
+        <button class="navbar-toggler border-0 shadow-none" type="button" data-bs-toggle="collapse" data-bs-target="#globalNavbarMenu" aria-controls="globalNavbarMenu" aria-expanded="false" aria-label="Mở menu">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse justify-content-end" id="globalNavbarMenu">
+          <ul class="navbar-nav align-items-lg-center gap-1 gap-lg-2 mt-2 mt-lg-0">
+            <li class="nav-item">
+              <a href="index.html" class="nav-link ct-nav-link"><i class="bi bi-house-door me-1"></i>Trang chủ</a>
+            </li>
+            <li class="nav-item">
+              <a href="about.html" class="nav-link ct-nav-link"><i class="bi bi-info-circle me-1"></i>Giới thiệu</a>
+            </li>
+            <li class="nav-item">
+              <a href="borrow-requests.html" class="nav-link ct-nav-link"><i class="bi bi-megaphone me-1"></i>Cần mượn</a>
+            </li>
+            <li class="nav-item">
+              <a href="chat.html" class="nav-link ct-nav-link position-relative" id="nav-chat-link">
+                <i class="bi bi-chat-dots me-1"></i>Chat
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="auth.html" class="nav-link ct-nav-link" id="nav-auth-link">
+                <i class="bi bi-person-circle me-1"></i><span id="nav-user-label">Đăng nhập</span>
+              </a>
+            </li>
+            <li class="nav-item ms-lg-2 mt-2 mt-lg-0">
+              <a href="post-item.html" class="btn btn-ct-orange w-100 w-lg-auto" id="nav-post-btn">
+                <i class="bi bi-pencil-square me-1"></i>Đăng tin
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <!-- PHẦN NỘI DUNG CHÍNH: CÁC THÀNH VIÊN CHỈ CODE BÊN TRONG THẺ <main> NÀY -->
+  <main id="app-main">
+    <div class="container">
+      <section class="catalog-hero" aria-labelledby="home-title">
+        <div class="hero-copy">
+          <p class="hero-location"><i class="bi bi-geo-alt-fill" aria-hidden="true"></i> Làng ĐHQG TP.HCM</p>
+          <h1 id="home-title">Cần gì, mượn ngay<br>trong Làng.</h1>
+          <form id="search-form" class="home-search" action="category.html" method="get" role="search">
+            <i class="bi bi-search" aria-hidden="true"></i>
+            <label class="visually-hidden" for="search-input">Tên đồ dùng cần tìm</label>
+            <input type="search" id="search-input" name="q" placeholder="Bạn muốn mượn gì?">
+            <button class="btn fe1-primary" type="submit" id="search-btn">Tìm kiếm</button>
+          </form>
+        </div>
+        <div class="hero-photo" aria-hidden="true"></div>
+      </section>
+
+      <nav class="catalog-section" aria-labelledby="home-categories-title">
+        <h2 id="home-categories-title" class="section-title">Khám phá danh mục</h2>
+        <ul id="category-nav-list" class="category-tiles">
+          <li><a href="category.html?cat=dien-tu"><i class="bi bi-laptop category-icon" aria-hidden="true"></i>Điện tử<i class="bi bi-chevron-right" aria-hidden="true"></i></a></li>
+          <li><a href="category.html?cat=tai-lieu"><i class="bi bi-book category-icon" aria-hidden="true"></i>Tài liệu<i class="bi bi-chevron-right" aria-hidden="true"></i></a></li>
+          <li><a href="category.html?cat=quan-ao"><i class="bi bi-handbag category-icon" aria-hidden="true"></i>Quần áo<i class="bi bi-chevron-right" aria-hidden="true"></i></a></li>
+          <li><a href="category.html?cat=dung-cu"><i class="bi bi-tools category-icon" aria-hidden="true"></i>Dụng cụ<i class="bi bi-chevron-right" aria-hidden="true"></i></a></li>
+        </ul>
+      </nav>
+
+      <section class="catalog-section" aria-labelledby="home-items-title">
+        <div class="section-heading">
+          <h2 id="home-items-title" class="section-title">Đồ cho mượn mới nhất</h2>
+          <a class="section-link" href="category.html">Xem tất cả <i class="bi bi-arrow-right" aria-hidden="true"></i></a>
+        </div>
+        <div id="home-items-grid" class="catalog-grid" aria-live="polite" aria-busy="true">
+          <div class="grid-status" role="status"><span class="spinner-border text-warning" aria-hidden="true"></span> Đang tải đồ dùng…</div>
+        </div>
+        <p id="home-items-empty" class="empty-state" hidden>Chưa có đồ dùng đang cho mượn.</p>
+      </section>
+
+      <section class="catalog-section" aria-labelledby="home-requests-title">
+        <div class="section-heading">
+          <h2 id="home-requests-title" class="section-title">Sinh viên đang cần mượn</h2>
+          <a id="view-all-requests-btn" class="section-link" href="borrow-requests.html">Xem tất cả <i class="bi bi-arrow-right" aria-hidden="true"></i></a>
+        </div>
+        <div id="home-requests-grid" class="catalog-grid" aria-live="polite" aria-busy="true">
+          <div class="grid-status" role="status"><span class="spinner-border text-warning" aria-hidden="true"></span> Đang tải yêu cầu…</div>
+        </div>
+        <p id="home-requests-empty" class="empty-state" hidden>Chưa có yêu cầu đang tìm mượn.</p>
+      </section>
+    </div>
+  </main>
+
+  <!-- FOOTER DÙNG CHUNG -->
+  <footer class="ct-footer" id="global-footer">
+    <div class="container d-flex flex-wrap justify-content-between align-items-center gap-2">
+      <div>
+        <strong class="text-dark">Nền tảng cho mượn đồ dùng sinh viên Làng ĐHQG TP.HCM - VNU-RENT</strong>
+        <p class="mb-0 mt-1">Đồ án môn IE104 - Internet và Công nghệ Web | Trường ĐH Công nghệ Thông tin (UIT)</p>
+      </div>
+      <div class="text-md-end">
+        <span>Nhóm 6 &copy; 2026</span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- 1. Bootstrap JS Bundle & Supabase CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+  <!-- 2. JS Giao diện của thành viên (đổi thành ui-fe2.js hoặc ui-fe3.js theo trang) -->
+  <script src="assets/js/ui-fe1.js"></script>
+
+  <!-- 3. JS Dịch vụ Supabase dùng chung & Logic từng trang -->
+  <script src="assets/js/services/supabase-config.js"></script>
+  <script src="assets/js/services/catalog-requests-service.js"></script>
+  <!-- <script src="assets/js/services/ai-assistant-service.js"></script> -->
+</body>
+</html>

@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tin nhắn &amp; Trò chuyện P2P — VNU-RENT</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
+  <!-- CSS Gốc-->
+  <link rel="stylesheet" href="assets/css/base.css">
+  <!-- CSS Riêng của TV3 -->
+  <link rel="stylesheet" href="assets/css/fe3.css">
+</head>
+<body>
+
+  <!-- HEADER / NAVBAR DÙNG CHUNG RESPONSIVE-->
+  <header class="sticky-top">
+    <nav class="navbar navbar-expand-lg ct-navbar" id="global-navbar">
+      <div class="container">
+        <a href="index.html" class="ct-brand d-flex align-items-center gap-2">
+          <i class="bi bi-bag-heart-fill text-danger"></i>
+          <span>VNU-RENT</span>
+        </a>
+
+        <!-- Nút thu gọn Menu trên điện thoại -->
+        <button class="navbar-toggler border-0 shadow-none" type="button" data-bs-toggle="collapse" data-bs-target="#globalNavbarMenu" aria-controls="globalNavbarMenu" aria-expanded="false" aria-label="Mở menu">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse justify-content-end" id="globalNavbarMenu">
+          <ul class="navbar-nav align-items-lg-center gap-1 gap-lg-2 mt-2 mt-lg-0">
+            <li class="nav-item">
+              <a href="index.html" class="nav-link ct-nav-link"><i class="bi bi-house-door me-1"></i>Trang chủ</a>
+            </li>
+            <li class="nav-item">
+              <a href="about.html" class="nav-link ct-nav-link"><i class="bi bi-info-circle me-1"></i>Giới thiệu</a>
+            </li>
+            <li class="nav-item">
+              <a href="borrow-requests.html" class="nav-link ct-nav-link"><i class="bi bi-megaphone me-1"></i>Cần mượn</a>
+            </li>
+            <li class="nav-item">
+              <a href="chat.html" class="nav-link ct-nav-link active bg-white bg-opacity-50 position-relative" id="nav-chat-link">
+                <i class="bi bi-chat-dots me-1"></i>Chat
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="auth.html" class="nav-link ct-nav-link" id="nav-auth-link">
+                <i class="bi bi-person-circle me-1"></i><span id="nav-user-label">Đăng nhập</span>
+              </a>
+            </li>
+            <li class="nav-item ms-lg-2 mt-2 mt-lg-0">
+              <a href="post-item.html" class="btn btn-ct-orange w-100 w-lg-auto" id="nav-post-btn">
+                <i class="bi bi-pencil-square me-1"></i>Đăng tin
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <!-- PHẦN NỘI DUNG CHÍNH: KHUNG CHAT 2 CỘT-->
+  <main id="app-main" class="py-3">
+    <div class="container">
+      
+      <div class="chat-window-card">
+        
+        <!-- CỘT TRÁI: DANH SÁCH HỘI THOẠI -->
+        <aside class="chat-sidebar">
+          <div class="chat-sidebar-header d-flex align-items-center justify-content-between">
+            <span class="text-dark"><i class="bi bi-chat-left-text me-2 text-warning"></i>Hội thoại</span>
+            <span class="badge bg-warning text-dark rounded-pill">3 cuộc trò chuyện</span>
+          </div>
+          
+          <!-- Container danh sách hội thoại (#chat-conversations-list) -->
+          <div class="chat-conversations-list" id="chat-conversations-list">
+            
+            <!-- Hội thoại mẫu 1 -->
+            <div class="chat-conversation-item active">
+              <img src="https://ui-avatars.com/api/?background=FFBA00&color=222222&bold=true&name=Nam+Anh" alt="Avatar" class="chat-avatar-thumb">
+              <div class="flex-grow-1 min-w-0">
+                <div class="d-flex justify-content-between align-items-baseline mb-1">
+                  <strong class="text-dark text-truncate" style="font-size: 0.95rem;">Nguyễn Nam Anh (UIT)</strong>
+                  <small class="text-muted" style="font-size: 0.75rem;">10:25</small>
+                </div>
+                <div class="chat-conv-preview">
+                  Máy tính Casio FX-580VNX vẫn còn pin tốt nha bạn!
+                </div>
+              </div>
+            </div>
+
+            <!-- Hội thoại mẫu 2 -->
+            <div class="chat-conversation-item">
+              <img src="https://ui-avatars.com/api/?background=20c997&color=ffffff&bold=true&name=My+Duyen" alt="Avatar" class="chat-avatar-thumb">
+              <div class="flex-grow-1 min-w-0">
+                <div class="d-flex justify-content-between align-items-baseline mb-1">
+                  <strong class="text-dark text-truncate" style="font-size: 0.95rem;">Trần Mỹ Duyên (KHTN)</strong>
+                  <small class="text-muted" style="font-size: 0.75rem;">Hôm qua</small>
+                </div>
+                <div class="chat-conv-preview">
+                  Áo vest size M mình để ở KTX Khu B nhé.
+                </div>
+              </div>
+              <span class="badge bg-danger rounded-pill" style="font-size: 0.7rem;">1</span>
+            </div>
+
+            <!-- Hội thoại mẫu 3 -->
+            <div class="chat-conversation-item">
+              <img src="https://ui-avatars.com/api/?background=0d6efd&color=ffffff&bold=true&name=Quang+Huy" alt="Avatar" class="chat-avatar-thumb">
+              <div class="flex-grow-1 min-w-0">
+                <div class="d-flex justify-content-between align-items-baseline mb-1">
+                  <strong class="text-dark text-truncate" style="font-size: 0.95rem;">Lê Quang Huy (Bách Khoa)</strong>
+                  <small class="text-muted" style="font-size: 0.75rem;">18/11</small>
+                </div>
+                <div class="chat-conv-preview">
+                  Cảm ơn bạn, mình đã gửi lại bộ kit rồi nha.
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </aside>
+
+        <!-- CỘT PHẢI: KHUNG TRÒ CHUYỆN -->
+        <section class="chat-main-pane">
+          
+          <!-- Header chat: Đối phương & Ngữ cảnh món đồ -->
+          <div class="chat-header">
+            <div class="d-flex align-items-center gap-2 min-w-0">
+              <img src="https://ui-avatars.com/api/?background=FFBA00&color=222222&bold=true&name=Nam+Anh" alt="Đối tác" class="rounded-circle" style="width: 40px; height: 40px;">
+              <div>
+                <h6 class="mb-0 fw-bold text-dark text-truncate" id="chat-partner-name">Nguyễn Nam Anh (UIT)</h6>
+                <small class="text-success d-flex align-items-center gap-1">
+                  <span class="d-inline-block rounded-circle bg-success" style="width: 7px; height: 7px;"></span>
+                  Đang hoạt động tại KTX Khu A
+                </small>
+              </div>
+            </div>
+
+            <!-- Thẻ ngữ cảnh món đồ đang hỏi mượn (#chat-item-context) -->
+            <div class="chat-item-context" id="chat-item-context">
+              <img src="https://images.unsplash.com/photo-1594980596870-8aa52a78d8cd?w=100&q=80" alt="Món đồ" class="chat-item-context-img">
+              <div class="text-truncate">
+                <div class="fw-semibold text-dark text-truncate" style="max-width: 170px;">Máy tính Casio FX-580VNX</div>
+                <small class="text-danger fw-bold">10.000đ / ngày</small>
+              </div>
+              <span class="badge bg-success ms-1 d-none d-md-inline-block">Còn trống</span>
+            </div>
+          </div>
+
+          <!-- Danh sách tin nhắn cuộn dọc (#chat-messages-container) -->
+          <div class="chat-messages-container" id="chat-messages-container">
+            
+            <div class="text-center my-2">
+              <span class="badge bg-light text-secondary border px-3 py-1 fw-normal" style="font-size: 0.75rem;">Hôm nay</span>
+            </div>
+
+            <!-- Tin nhắn đối phương (partner - bên trái, màu trắng) -->
+            <div class="chat-bubble-row partner">
+              <div class="chat-bubble">
+                Chào bạn, mình thấy bạn quan tâm đến chiếc máy tính Casio FX-580VNX này đúng không?
+              </div>
+              <span class="chat-bubble-time">10:15</span>
+            </div>
+
+            <!-- Tin nhắn của mình (self - bên phải, màu vàng cam nhạt) -->
+            <div class="chat-bubble-row self">
+              <div class="chat-bubble">
+                Chào Nam Anh! Đúng rồi, sáng mai mình có thi môn Xác suất thống kê bên UIT, bạn có thể cho mình mượn 1 ngày được không?
+              </div>
+              <span class="chat-bubble-time">10:18</span>
+            </div>
+
+            <!-- Tin nhắn đối phương kèm ảnh minh họa -->
+            <div class="chat-bubble-row partner">
+              <div class="chat-bubble">
+                Được nhé bạn, máy mình mới thay pin tuần trước, màn hình hiển thị rất rõ nét. Đây là ảnh chụp thực tế máy nhé:
+                <img src="https://images.unsplash.com/photo-1594980596870-8aa52a78d8cd?w=400&q=80" alt="Ảnh máy tính">
+              </div>
+              <span class="chat-bubble-time">10:20</span>
+            </div>
+
+            <!-- Tin nhắn của mình -->
+            <div class="chat-bubble-row self">
+              <div class="chat-bubble">
+                Máy còn mới quá! Bạn đang ở tòa nào KTX Khu A vậy? Tối nay khoảng 7h mình qua lấy được không bạn?
+              </div>
+              <span class="chat-bubble-time">10:23</span>
+            </div>
+
+            <!-- Tin nhắn đối phương trả lời -->
+            <div class="chat-bubble-row partner">
+              <div class="chat-bubble">
+                Máy tính Casio FX-580VNX vẫn còn pin tốt nha bạn! Mình ở tòa A3 KTX Khu A, 7h tối bạn tới sảnh A3 gọi mình mang xuống nhé.
+              </div>
+              <span class="chat-bubble-time">10:25</span>
+            </div>
+
+          </div>
+
+          <!-- Thanh nút gợi ý tin nhắn mẫu nhanh (#chat-quick-replies) -->
+          <div class="chat-quick-replies" id="chat-quick-replies">
+            <button type="button" class="chat-quick-reply-btn" data-reply="Món này hiện tại còn cho mượn không bạn?">
+              Món này còn không bạn?
+            </button>
+            <button type="button" class="chat-quick-reply-btn" data-reply="Bạn ở KTX Khu A hay Khu B vậy?">
+              Bạn ở KTX Khu A hay Khu B?
+            </button>
+            <button type="button" class="chat-quick-reply-btn" data-reply="Mình có thể mượn trong 2 ngày được không?">
+              Mượn trong 2 ngày được không?
+            </button>
+            <button type="button" class="chat-quick-reply-btn" data-reply="Thủ tục đặt cọc như thế nào vậy bạn?">
+              Thủ tục cọc thế nào?
+            </button>
+            <button type="button" class="chat-quick-reply-btn" data-reply="Tối nay mình qua lấy trực tiếp được không?">
+              Tối nay mình qua lấy được không?
+            </button>
+          </div>
+
+          <!-- Khung xem trước ảnh/video trước khi gửi (#chat-media-preview-box) -->
+          <div class="chat-media-preview-box d-none" id="chat-media-preview-box">
+            <div class="position-relative d-inline-block">
+              <!-- Ảnh preview (#chat-img-preview) -->
+              <img id="chat-img-preview" src="" alt="Xem trước ảnh" class="d-none">
+              <!-- Video preview (#chat-video-preview) -->
+              <video id="chat-video-preview" controls class="d-none"></video>
+            </div>
+            <div class="d-flex flex-column gap-1">
+              <span class="small fw-semibold text-dark">Tệp đính kèm sẵn sàng gửi</span>
+              <button type="button" class="btn btn-sm btn-outline-danger py-0 px-2" style="font-size: 0.8rem; width: fit-content;" onclick="window.clearChatMediaPreview()">
+                <i class="bi bi-x me-1"></i>Hủy tệp này
+              </button>
+            </div>
+          </div>
+
+          <!-- Form gửi tin nhắn (#chat-message-form) -->
+          <div class="chat-input-bar">
+            <form id="chat-message-form" class="chat-input-wrapper">
+              
+              <!-- Nút đính kèm ảnh/video mở input file -->
+              <label for="chat-media-input" class="chat-attach-btn" title="Gửi ảnh hoặc video ngắn (Ảnh <= 2MB, Video <= 10MB)">
+                <i class="bi bi-paperclip"></i>
+              </label>
+              <!-- Input file ẩn (#chat-media-input) -->
+              <input type="file" id="chat-media-input" accept="image/*,video/*" class="d-none">
+
+              <!-- Ô nhập nội dung tin nhắn (#chat-text-input) -->
+              <input type="text" id="chat-text-input" class="form-control" placeholder="Nhập tin nhắn trao đổi mượn đồ..." autocomplete="off">
+
+              <!-- Nút gửi tin nhắn (#chat-send-btn) -->
+              <button type="submit" id="chat-send-btn" class="btn btn-ct-orange d-flex align-items-center gap-1">
+                <i class="bi bi-send-fill"></i>
+                <span class="d-none d-sm-inline">Gửi</span>
+              </button>
+
+            </form>
+          </div>
+
+        </section>
+
+      </div>
+
+    </div>
+  </main>
+
+  <!-- FOOTER DÙNG CHUNG -->
+  <footer class="ct-footer" id="global-footer">
+    <div class="container d-flex flex-wrap justify-content-between align-items-center gap-2">
+      <div>
+        <strong class="text-dark">Nền tảng cho mượn đồ dùng sinh viên Làng ĐHQG TP.HCM - VNU-RENT</strong>
+        <p class="mb-0 mt-1">Đồ án môn IE104 - Internet và Công nghệ Web | Trường ĐH Công nghệ Thông tin (UIT)</p>
+      </div>
+      <div class="text-md-end">
+        <span>Nhóm 6 &copy; 2026</span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- 1. Bootstrap JS Bundle & Supabase CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+  <!-- 2. JS Giao diện của thành viên TV3 -->
+  <script src="assets/js/ui-fe3.js"></script>
+
+  <!-- 3. JS Dịch vụ Supabase dùng chung -->
+  <script src="assets/js/services/supabase-config.js"></script>
+
+  <!-- 4. JS Dịch vụ Chat Realtime do Nhóm trưởng viết nối vào sau -->
+  <script src="assets/js/services/chat-service.js"></script>
+</body>
+</html>

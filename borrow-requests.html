@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Nhu cầu mượn đồ | VNU-RENT</title>
+  <link rel="icon" href="data:,">
+  <!-- Bootstrap 5.3 & Bootstrap Icons CDN -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
+  <!-- CSS Gốc Dùng Chung (KHÔNG SỬA) -->
+  <link rel="stylesheet" href="assets/css/base.css">
+  <!-- CSS Riêng của từng thành viên (thay fe1.css bằng fe2.css hoặc fe3.css) -->
+  <link rel="stylesheet" href="assets/css/fe1.css">
+</head>
+<body>
+
+  <!-- HEADER / NAVBAR DÙNG CHUNG RESPONSIVE (KHÔNG SỬA ID) -->
+  <header class="sticky-top">
+    <nav class="navbar navbar-expand-lg ct-navbar" id="global-navbar">
+      <div class="container">
+        <a href="index.html" class="ct-brand d-flex align-items-center gap-2">
+          <i class="bi bi-bag-heart-fill text-danger"></i>
+          <span>VNU-RENT</span>
+        </a>
+
+        <!-- Nút thu gọn Menu trên điện thoại -->
+        <button class="navbar-toggler border-0 shadow-none" type="button" data-bs-toggle="collapse" data-bs-target="#globalNavbarMenu" aria-controls="globalNavbarMenu" aria-expanded="false" aria-label="Mở menu">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse justify-content-end" id="globalNavbarMenu">
+          <ul class="navbar-nav align-items-lg-center gap-1 gap-lg-2 mt-2 mt-lg-0">
+            <li class="nav-item">
+              <a href="index.html" class="nav-link ct-nav-link"><i class="bi bi-house-door me-1"></i>Trang chủ</a>
+            </li>
+            <li class="nav-item">
+              <a href="about.html" class="nav-link ct-nav-link"><i class="bi bi-info-circle me-1"></i>Giới thiệu</a>
+            </li>
+            <li class="nav-item">
+              <a href="borrow-requests.html" class="nav-link ct-nav-link"><i class="bi bi-megaphone me-1"></i>Cần mượn</a>
+            </li>
+            <li class="nav-item">
+              <a href="chat.html" class="nav-link ct-nav-link position-relative" id="nav-chat-link">
+                <i class="bi bi-chat-dots me-1"></i>Chat
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="auth.html" class="nav-link ct-nav-link" id="nav-auth-link">
+                <i class="bi bi-person-circle me-1"></i><span id="nav-user-label">Đăng nhập</span>
+              </a>
+            </li>
+            <li class="nav-item ms-lg-2 mt-2 mt-lg-0">
+              <a href="post-item.html" class="btn btn-ct-orange w-100 w-lg-auto" id="nav-post-btn">
+                <i class="bi bi-pencil-square me-1"></i>Đăng tin
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <!-- PHẦN NỘI DUNG CHÍNH: CÁC THÀNH VIÊN CHỈ CODE BÊN TRONG THẺ <main> NÀY -->
+  <main id="app-main">
+    <div class="container">
+      <nav class="catalog-breadcrumb" aria-label="Đường dẫn"><a href="index.html">Trang chủ</a><i class="bi bi-chevron-right" aria-hidden="true"></i>Cần mượn</nav>
+      <div class="section-heading requests-heading">
+        <h1 class="page-title">Sinh viên đang cần mượn</h1>
+        <button class="btn fe1-primary" type="button" id="open-request-modal-btn" aria-haspopup="dialog"><i class="bi bi-plus-lg me-1" aria-hidden="true"></i>Đăng yêu cầu mượn</button>
+      </div>
+      <div id="requests-notice" class="d-none" role="status"></div>
+      <section aria-label="Danh sách yêu cầu mượn">
+        <div id="requests-list-grid" class="catalog-grid" aria-live="polite" aria-busy="true">
+          <div class="grid-status" role="status"><span class="spinner-border text-warning" aria-hidden="true"></span> Đang tải yêu cầu…</div>
+        </div>
+        <p id="requests-empty-state" class="empty-state" role="status" hidden>Chưa có yêu cầu đang tìm mượn. Bạn có thể đăng yêu cầu đầu tiên.</p>
+      </section>
+
+      <div class="modal fade" id="create-request-modal" tabindex="-1" aria-labelledby="request-modal-title" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h2 class="modal-title fs-4" id="request-modal-title">Đăng yêu cầu mượn</h2>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Đóng"></button>
+            </div>
+            <form id="create-request-form">
+              <div class="modal-body">
+                <div id="request-form-error" class="d-none" role="alert"></div>
+                <fieldset id="request-fields" class="request-fields">
+                  <div>
+                    <label for="req-item-name" class="form-label">Tên đồ dùng cần mượn</label>
+                    <input id="req-item-name" class="form-control" name="item_name" required placeholder="Ví dụ: Cáp chuyển Type-C sang HDMI">
+                  </div>
+                  <div>
+                    <label for="req-image-input" class="form-label">Ảnh minh họa <span>(tùy chọn)</span></label>
+                    <input id="req-image-input" class="form-control" type="file" name="image" accept="image/*" aria-describedby="req-image-help req-image-error">
+                    <div id="req-image-help" class="form-text">Chọn một ảnh có dung lượng tối đa 2 MB.</div>
+                    <div id="req-image-error" class="invalid-feedback"></div>
+                    <img id="req-image-preview" class="request-preview" alt="Ảnh minh họa đã chọn" hidden>
+                  </div>
+                  <div>
+                    <label for="req-desired-price" class="form-label">Giá mong muốn</label>
+                    <input id="req-desired-price" class="form-control" name="desired_price" required placeholder="Ví dụ: Miễn phí hoặc 10.000đ / ngày">
+                  </div>
+                  <div>
+                    <label for="req-desired-duration" class="form-label">Thời gian cần mượn</label>
+                    <input id="req-desired-duration" class="form-control" name="desired_duration" required placeholder="Ví dụ: 2 ngày cuối tuần này">
+                  </div>
+                  <div>
+                    <label for="req-note" class="form-label">Ghi chú <span>(tùy chọn)</span></label>
+                    <textarea id="req-note" class="form-control" name="note" rows="2" placeholder="Bạn muốn nhận đồ ở đâu, khi nào?"></textarea>
+                  </div>
+                </fieldset>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-light" data-bs-dismiss="modal">Hủy</button>
+                <button type="submit" class="btn fe1-primary" id="req-submit-btn">Đăng yêu cầu</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- FOOTER DÙNG CHUNG -->
+  <footer class="ct-footer" id="global-footer">
+    <div class="container d-flex flex-wrap justify-content-between align-items-center gap-2">
+      <div>
+        <strong class="text-dark">Nền tảng cho mượn đồ dùng sinh viên Làng ĐHQG TP.HCM - VNU-RENT</strong>
+        <p class="mb-0 mt-1">Đồ án môn IE104 - Internet và Công nghệ Web | Trường ĐH Công nghệ Thông tin (UIT)</p>
+      </div>
+      <div class="text-md-end">
+        <span>Nhóm 6 &copy; 2026</span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- 1. Bootstrap JS Bundle & Supabase CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+  <!-- 2. JS Giao diện của thành viên (đổi thành ui-fe2.js hoặc ui-fe3.js theo trang) -->
+  <script src="assets/js/ui-fe1.js"></script>
+
+  <!-- 3. JS Dịch vụ Supabase dùng chung & Logic từng trang -->
+  <script src="assets/js/services/supabase-config.js"></script>
+  <script src="assets/js/services/catalog-requests-service.js"></script>
+  <!-- <script src="assets/js/services/ai-assistant-service.js"></script> -->
+</body>
+</html>

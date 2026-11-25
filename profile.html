@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Trang cá nhân & Quản lý tin — VNU-RENT</title>
+  <!-- Bootstrap 5.3 & Bootstrap Icons CDN -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
+  <!-- CSS Gốc-->
+  <link rel="stylesheet" href="assets/css/base.css">
+  <!-- CSS Riêng của TV3 -->
+  <link rel="stylesheet" href="assets/css/fe3.css">
+</head>
+<body>
+
+  <!-- HEADER / NAVBAR DÙNG CHUNG RESPONSIVE (KHÔNG SỬA ID) -->
+  <header class="sticky-top">
+    <nav class="navbar navbar-expand-lg ct-navbar" id="global-navbar">
+      <div class="container">
+        <a href="index.html" class="ct-brand d-flex align-items-center gap-2">
+          <i class="bi bi-bag-heart-fill text-danger"></i>
+          <span>VNU-RENT</span>
+        </a>
+
+        <!-- Nút thu gọn Menu trên điện thoại -->
+        <button class="navbar-toggler border-0 shadow-none" type="button" data-bs-toggle="collapse" data-bs-target="#globalNavbarMenu" aria-controls="globalNavbarMenu" aria-expanded="false" aria-label="Mở menu">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse justify-content-end" id="globalNavbarMenu">
+          <ul class="navbar-nav align-items-lg-center gap-1 gap-lg-2 mt-2 mt-lg-0">
+            <li class="nav-item">
+              <a href="index.html" class="nav-link ct-nav-link"><i class="bi bi-house-door me-1"></i>Trang chủ</a>
+            </li>
+            <li class="nav-item">
+              <a href="about.html" class="nav-link ct-nav-link"><i class="bi bi-info-circle me-1"></i>Giới thiệu</a>
+            </li>
+            <li class="nav-item">
+              <a href="borrow-requests.html" class="nav-link ct-nav-link"><i class="bi bi-megaphone me-1"></i>Cần mượn</a>
+            </li>
+            <li class="nav-item">
+              <a href="chat.html" class="nav-link ct-nav-link position-relative" id="nav-chat-link">
+                <i class="bi bi-chat-dots me-1"></i>Chat
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="auth.html" class="nav-link ct-nav-link" id="nav-auth-link">
+                <i class="bi bi-person-circle me-1"></i><span id="nav-user-label">Đăng nhập</span>
+              </a>
+            </li>
+            <li class="nav-item ms-lg-2 mt-2 mt-lg-0">
+              <a href="post-item.html" class="btn btn-ct-orange w-100 w-lg-auto" id="nav-post-btn">
+                <i class="bi bi-pencil-square me-1"></i>Đăng tin
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <!-- PHẦN NỘI DUNG CHÍNH: CÁC THÀNH VIÊN CHỈ CODE BÊN TRONG THẺ <main> NÀY -->
+  <main id="app-main">
+    <div class="container">
+      
+      <!-- Tiêu đề trang -->
+      <div class="d-flex align-items-center justify-content-between mb-4">
+        <div>
+          <h1 class="h3 fw-bold mb-1">Trang cá nhân & Quản lý tin</h1>
+          <p class="text-muted mb-0">Cập nhật hồ sơ sinh viên và theo dõi các tin đăng đồ dùng của bạn</p>
+        </div>
+        <button id="btn-logout" class="btn btn-outline-danger btn-sm">
+          <i class="bi bi-box-arrow-right me-1"></i>Đăng xuất
+        </button>
+      </div>
+
+      <div class="row g-4">
+        
+        <!-- CỘT TRÁI: HỒ SƠ CÁ NHÂN -->
+        <div class="col-lg-4 col-md-5">
+          <div class="fe3-card p-4">
+            <h2 class="fe3-section-title">Hồ sơ cá nhân</h2>
+
+            <!-- Khung thông báo hồ sơ -->
+            <div id="profile-alert" class="alert d-none" role="alert"></div>
+
+            <!-- Khu vực ảnh đại diện -->
+            <div class="text-center">
+              <div class="profile-avatar-wrapper">
+                <img id="profile-avatar-img" src="https://ui-avatars.com/api/?background=FFBA00&color=222222&bold=true&name=SV" alt="Ảnh đại diện" class="profile-avatar-img">
+                <label for="profile-avatar-input" class="profile-avatar-upload-btn" title="Đổi ảnh đại diện">
+                  <i class="bi bi-camera-fill"></i>
+                </label>
+                <input type="file" id="profile-avatar-input" accept="image/*" class="d-none">
+              </div>
+              <p class="small text-muted mb-3">Nhấn vào biểu tượng máy ảnh để thay đổi ảnh đại diện (Tối đa 2MB)</p>
+            </div>
+
+            <!-- Form hồ sơ cá nhân -->
+            <form id="profile-form">
+              <div class="mb-3">
+                <label for="profile-username" class="form-label fw-semibold small">Họ và tên / Biệt danh <span class="text-danger">*</span></label>
+                <div class="input-group">
+                  <span class="input-group-text bg-light"><i class="bi bi-person"></i></span>
+                  <input type="text" id="profile-username" class="form-control" placeholder="Nhập tên hiển thị" required>
+                </div>
+              </div>
+
+              <div class="mb-3">
+                <label for="profile-email" class="form-label fw-semibold small">Email sinh viên (Không thể đổi)</label>
+                <div class="input-group">
+                  <span class="input-group-text bg-light"><i class="bi bi-envelope"></i></span>
+                  <input type="email" id="profile-email" class="form-control bg-light" readonly>
+                </div>
+              </div>
+
+              <div class="mb-3">
+                <label for="profile-phone" class="form-label fw-semibold small">Số điện thoại liên hệ</label>
+                <div class="input-group">
+                  <span class="input-group-text bg-light"><i class="bi bi-telephone"></i></span>
+                  <input type="tel" id="profile-phone" class="form-control" placeholder="Ví dụ: 0912345678">
+                </div>
+              </div>
+
+              <div class="mb-4">
+                <label for="profile-area" class="form-label fw-semibold small">Khu vực tại Làng ĐHQG <span class="text-danger">*</span></label>
+                <div class="input-group">
+                  <span class="input-group-text bg-light"><i class="bi bi-geo-alt"></i></span>
+                  <select id="profile-area" class="form-select" required>
+                    <!-- Options được render tự động qua window.VNU_AREAS -->
+                  </select>
+                </div>
+              </div>
+
+              <button type="submit" id="profile-save-btn" class="btn btn-ct-orange w-100">
+                <i class="bi bi-check2-circle me-1"></i>Lưu thay đổi
+              </button>
+            </form>
+
+          </div>
+        </div>
+
+        <!-- CỘT PHẢI: QUẢN LÝ TIN ĐĂNG & YÊU CẦU MƯỢN -->
+        <div class="col-lg-8 col-md-7">
+          <div class="fe3-card p-4">
+            
+            <!-- Tab Navigation chuyển đổi -->
+            <div class="profile-tab-nav">
+              <button type="button" class="profile-tab-btn active" id="profile-tab-items-btn" onclick="window.switchProfileTab('items')">
+                <i class="bi bi-box-seam me-1"></i>Đồ cho mượn của tôi
+              </button>
+              <button type="button" class="profile-tab-btn" id="profile-tab-requests-btn" onclick="window.switchProfileTab('requests')">
+                <i class="bi bi-megaphone me-1"></i>Nhu cầu cần mượn của tôi
+              </button>
+            </div>
+
+            <!-- Tab 1: Danh sách đồ cho mượn -->
+            <div id="profile-tab-items-pane">
+              <div class="d-flex justify-content-between align-items-center mb-3">
+                <span class="text-muted small">Quản lý trạng thái và chỉnh sửa danh sách đồ dùng bạn đã đăng</span>
+                <a href="post-item.html" class="btn btn-outline-warning btn-sm text-dark fw-semibold">
+                  <i class="bi bi-plus-lg me-1"></i>Đăng tin mới
+                </a>
+              </div>
+              <div id="my-items-list">
+                <!-- Nội dung được tải từ Supabase thông qua profile-service.js -->
+              </div>
+            </div>
+
+            <!-- Tab 2: Danh sách nhu cầu mượn -->
+            <div id="profile-tab-requests-pane" class="d-none">
+              <div class="d-flex justify-content-between align-items-center mb-3">
+                <span class="text-muted small">Theo dõi các tin tìm mượn đồ dùng bạn đã gửi lên cộng đồng</span>
+                <a href="borrow-requests.html" class="btn btn-outline-warning btn-sm text-dark fw-semibold">
+                  <i class="bi bi-send me-1"></i>Tạo yêu cầu mới
+                </a>
+              </div>
+              <div id="my-requests-list">
+                <!-- Nội dung được tải từ Supabase thông qua profile-service.js -->
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </main>
+
+  <!-- FOOTER DÙNG CHUNG -->
+  <footer class="ct-footer" id="global-footer">
+    <div class="container d-flex flex-wrap justify-content-between align-items-center gap-2">
+      <div>
+        <strong class="text-dark">Nền tảng cho mượn đồ dùng sinh viên Làng ĐHQG TP.HCM - VNU-RENT</strong>
+        <p class="mb-0 mt-1">Đồ án môn IE104 - Internet và Công nghệ Web | Trường ĐH Công nghệ Thông tin (UIT)</p>
+      </div>
+      <div class="text-md-end">
+        <span>Nhóm 6 &copy; 2026</span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- 1. Bootstrap JS Bundle & Supabase CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+  <!-- 2. JS Giao diện của thành viên TV3 -->
+  <script src="assets/js/ui-fe3.js"></script>
+
+  <!-- 3. JS Dịch vụ Supabase dùng chung & Logic trang Profile -->
+  <script src="assets/js/services/supabase-config.js"></script>
+  <script src="assets/js/services/profile-service.js"></script>
+</body>
+</html>

@@ -1,0 +1,168 @@
+/* fe3.css — Giao diện riêng cho Thành viên 3 (TV3) */
+
+/*1. GIAO DIỆN CHUNG & TIỆN ÍCH CHO TV3*/
+.fe3-card {
+  background: #ffffff;
+  border: 1px solid var(--ct-border);
+  border-radius: var(--ct-radius);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.04);
+  transition: all 0.2s ease;
+}
+
+.fe3-card:hover {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+.fe3-section-title {
+  font-weight: 700;
+  font-size: 1.25rem;
+  color: var(--ct-text-main);
+  position: relative;
+  padding-bottom: 8px;
+  margin-bottom: 20px;
+}
+
+.fe3-section-title::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 48px;
+  height: 3px;
+  background-color: var(--ct-orange);
+  border-radius: 2px;
+}
+
+/* 2. TRANG CÁ NHÂN & QUẢN LÝ TIN ĐĂNG (profile.html)*/
+.profile-avatar-wrapper {
+  position: relative;
+  width: 120px;
+  height: 120px;
+  margin: 0 auto 16px;
+}
+
+.profile-avatar-img {
+  width: 120px;
+  height: 120px;
+  object-fit: cover;
+  border-radius: 50%;
+  border: 3px solid var(--ct-yellow);
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.12);
+  background-color: #f0f0f0;
+}
+
+.profile-avatar-upload-btn {
+  position: absolute;
+  right: 2px;
+  bottom: 2px;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background-color: var(--ct-orange);
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  border: 2px solid #ffffff;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  transition: transform 0.2s, background-color 0.2s;
+}
+
+.profile-avatar-upload-btn:hover {
+  background-color: var(--ct-orange-hover);
+  transform: scale(1.08);
+}
+
+.profile-tab-nav {
+  display: flex;
+  border-bottom: 2px solid var(--ct-border);
+  gap: 12px;
+  margin-bottom: 20px;
+}
+
+.profile-tab-btn {
+  background: none;
+  border: none;
+  padding: 10px 18px;
+  font-weight: 600;
+  font-size: 1rem;
+  color: var(--ct-text-muted);
+  cursor: pointer;
+  position: relative;
+  transition: color 0.2s;
+}
+
+.profile-tab-btn:hover {
+  color: var(--ct-orange);
+}
+
+.profile-tab-btn.active {
+  color: var(--ct-orange);
+}
+
+.profile-tab-btn.active::after {
+  content: "";
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background-color: var(--ct-orange);
+  border-radius: 3px 3px 0 0;
+}
+
+.profile-item-row {
+  background: #ffffff;
+  border: 1px solid var(--ct-border);
+  border-radius: var(--ct-radius);
+  padding: 14px 16px;
+  margin-bottom: 12px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  transition: background-color 0.15s, box-shadow 0.15s;
+}
+
+.profile-item-row:hover {
+  background-color: #fafafa;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.profile-item-thumb {
+  width: 80px;
+  height: 60px;
+  object-fit: cover;
+  border-radius: 6px;
+  background-color: #eaeaea;
+  flex-shrink: 0;
+}
+
+.profile-item-content {
+  flex: 1;
+  min-width: 0;
+}
+
+.profile-item-title {
+  font-weight: 600;
+  font-size: 1.05rem;
+  color: var(--ct-text-main);
+  text-decoration: none;
+  display: inline-block;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 100%;
+}
+
+.profile-item-title:hover {
+  color: var(--ct-orange);
+}
+
+.profile-item-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+

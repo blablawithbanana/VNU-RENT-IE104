@@ -54,37 +54,6 @@
     }
   };
 
-  window.initOwnerContactUrlEditor = function (defaultUrl) {
-    const input = document.getElementById('owner-contact-url-input');
-    const link = document.getElementById('owner-contact-url-btn');
-    const error = document.getElementById('owner-contact-url-error');
-    if (!input || !link || !error) return;
-
-    input.value = defaultUrl;
-    const updateLink = function () {
-      let target;
-      try {
-        target = new URL(input.value.trim(), window.location.href);
-      } catch (error) {
-        target = null;
-      }
-
-      if (!target || (target.protocol !== 'http:' && target.protocol !== 'https:')) {
-        link.removeAttribute('href');
-        link.setAttribute('aria-disabled', 'true');
-        error.classList.remove('d-none');
-        return;
-      }
-
-      link.href = target.href;
-      link.removeAttribute('aria-disabled');
-      error.classList.add('d-none');
-    };
-
-    input.addEventListener('input', updateLink);
-    updateLink();
-  };
-
   document.addEventListener('DOMContentLoaded', function () {
     const priceInput = document.getElementById('post-price-amount');
     const priceUnit = document.getElementById('post-price-unit');

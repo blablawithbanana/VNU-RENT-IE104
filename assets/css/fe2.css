@@ -103,10 +103,6 @@
   content: "";
 }
 
-.price-preview.ct-price {
-  color: var(--ct-text-main);
-}
-
 .image-preview img {
   display: block;
   width: min(100%, 420px);
@@ -169,6 +165,10 @@
   font-weight: 750;
   text-align: right;
   white-space: nowrap;
+}
+
+.detail-price.ct-price-free {
+  color: #198754;
 }
 
 .detail-facts {

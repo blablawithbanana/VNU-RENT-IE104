@@ -22,7 +22,7 @@
             <li class="nav-item"><a href="borrow-requests.html" class="nav-link ct-nav-link"><i class="bi bi-megaphone me-1"></i>Cần mượn</a></li>
             <li class="nav-item"><a href="chat.html" class="nav-link ct-nav-link position-relative" id="nav-chat-link"><i class="bi bi-chat-dots me-1"></i>Chat</a></li>
             <li class="nav-item"><a href="auth.html" class="nav-link ct-nav-link" id="nav-auth-link"><i class="bi bi-person-circle me-1"></i><span id="nav-user-label">Đăng nhập</span></a></li>
-            <li class="nav-item ms-lg-2 mt-2 mt-lg-0"><a href="post-item.html" class="btn btn-ct-orange w-100 w-lg-auto" id="nav-post-btn"><i class="bi bi-pencil-square me-1"></i>Đăng tin</a></li>
+            <li class="nav-item ms-lg-2 mt-2 mt-lg-0"><a href="post-item.html" class="btn btn-ct-orange d-block d-lg-inline-block" id="nav-post-btn"><i class="bi bi-pencil-square me-1"></i>Đăng tin</a></li>
           </ul>
         </div>
       </div>
@@ -59,25 +59,7 @@
             </section>
             <a id="detail-contact-btn" class="btn btn-ct-orange w-100 mt-4"><i class="bi bi-chat-dots me-2"></i>Liên hệ người cho mượn</a>
             <section id="owner-action-panel" class="owner-actions d-none mt-4">
-              <h2 class="h6">Quản lý tin đăng</h2>
-              <div class="owner-contact-editor mb-3">
-                <div class="owner-contact-heading">
-                  <span class="owner-contact-icon"><i class="bi bi-link-45deg" aria-hidden="true"></i></span>
-                  <div class="owner-contact-copy">
-                    <label for="owner-contact-url-input" class="owner-contact-title">Liên hệ người cho mượn</label>
-                  </div>
-                </div>
-                <div class="owner-contact-controls">
-                  <div class="owner-contact-input-wrap">
-                    <i class="bi bi-link-45deg" aria-hidden="true"></i>
-                    <input id="owner-contact-url-input" class="form-control" type="text" inputmode="url" autocomplete="off" spellcheck="false" maxlength="2048" aria-describedby="owner-contact-url-error">
-                  </div>
-                  <a id="owner-contact-url-btn" class="btn btn-ct-orange owner-contact-open-btn" target="_blank" rel="noopener noreferrer">
-                    <i class="bi bi-box-arrow-up-right" aria-hidden="true"></i><span>Mở liên kết</span>
-                  </a>
-                </div>
-                <div id="owner-contact-url-error" class="owner-contact-url-error d-none" role="alert" aria-live="polite">Nhập URL http(s) hoặc đường dẫn tương đối hợp lệ.</div>
-              </div>
+              <h2 class="h6 mb-3">Quản lý tin đăng</h2>
               <button id="btn-toggle-item-status" class="btn btn-outline-secondary w-100 mb-2" type="button"></button>
               <button id="btn-delete-item" class="btn btn-outline-danger w-100" type="button"><i class="bi bi-trash me-2"></i>Xóa tin đăng</button>
             </section>

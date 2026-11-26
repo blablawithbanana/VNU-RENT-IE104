@@ -211,7 +211,9 @@
       image.alt = item.title || 'Ảnh món đồ';
       document.getElementById('detail-title').textContent = item.title;
       document.getElementById('detail-status-badge').innerHTML = window.getStatusBadgeHTML(item.status);
-      document.getElementById('detail-price').textContent = window.formatRentPrice(item.price_amount, item.price_unit);
+      const priceEl = document.getElementById('detail-price');
+        priceEl.textContent = window.formatRentPrice(item.price_amount, item.price_unit);
+        priceEl.className = `detail-price ${window.getPriceClass(item.price_amount)}`;
       document.getElementById('detail-duration').textContent = item.duration;
       document.getElementById('detail-category').textContent = window.getCategoryLabel(item.category);
       document.getElementById('detail-area').textContent = item.area;
@@ -226,7 +228,6 @@
       if (isOwner) {
         contactButton.classList.add('d-none');
         ownerPanel.classList.remove('d-none');
-        window.initOwnerContactUrlEditor(`chat.html?partner_id=${encodeURIComponent(item.owner_id)}&item_id=${encodeURIComponent(item.id)}`);
         configureOwnerActions(item);
       } else {
         contactButton.href = `chat.html?partner_id=${encodeURIComponent(item.owner_id)}&item_id=${encodeURIComponent(item.id)}`;

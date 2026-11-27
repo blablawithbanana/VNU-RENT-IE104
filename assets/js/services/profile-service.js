@@ -128,6 +128,7 @@
 
       if (newAvatarUrl) {
         updateData.avatar_url = newAvatarUrl;
+        if (avatarInput) avatarInput.value = '';
       }
 
       const { error } = await window.supabaseClient

@@ -69,22 +69,35 @@ window.scrollToBottomChat = function () {
 
 // 3. KHỞI TẠO CÁC SỰ KIỆN GIAO DIỆN KHI DOM SẴN SÀNG
 document.addEventListener('DOMContentLoaded', () => {
+  let avatarPreviewUrl = null;
+  let chatMediaPreviewUrl = null;
 
-  // Preview Avatar tại trang Profile
+  // Preview Avatar tại trang Profile (chặn ảnh > 2MB)
   const avatarInput = document.getElementById('profile-avatar-input');
   const avatarImg = document.getElementById('profile-avatar-img');
 
   if (avatarInput && avatarImg) {
     avatarInput.addEventListener('change', (e) => {
       const file = e.target.files && e.target.files[0];
-      if (file && file.type.startsWith('image/')) {
-        const previewUrl = URL.createObjectURL(file);
-        avatarImg.src = previewUrl;
+      if (!file) return;
+      if (!file.type.startsWith('image/')) {
+        window.showAlert('profile-alert', 'Vui lòng chọn tệp hình ảnh hợp lệ.', 'danger');
+        avatarInput.value = '';
+        return;
       }
+      if (window.VNU_CONFIG && file.size > window.VNU_CONFIG.MAX_IMAGE_BYTES) {
+        window.showAlert('profile-alert', 'Dung lượng ảnh đại diện vượt quá giới hạn 2 MB.', 'danger');
+        avatarInput.value = '';
+        return;
+      }
+      window.hideAlert('profile-alert');
+      if (avatarPreviewUrl) URL.revokeObjectURL(avatarPreviewUrl);
+      avatarPreviewUrl = URL.createObjectURL(file);
+      avatarImg.src = avatarPreviewUrl;
     });
   }
 
-  // Preview Media (Ảnh/Video) tại khung Chat
+  // Preview Media (Ảnh <= 2MB / Video <= 10MB) tại khung Chat
   const chatMediaInput = document.getElementById('chat-media-input');
   const chatMediaBox = document.getElementById('chat-media-preview-box');
   const chatImgPreview = document.getElementById('chat-img-preview');
@@ -93,48 +106,65 @@ document.addEventListener('DOMContentLoaded', () => {
   if (chatMediaInput && chatMediaBox) {
     chatMediaInput.addEventListener('change', (e) => {
       const file = e.target.files && e.target.files[0];
+      if (chatMediaPreviewUrl) {
+        URL.revokeObjectURL(chatMediaPreviewUrl);
+        chatMediaPreviewUrl = null;
+      }
       if (!file) {
         window.clearChatMediaPreview();
         return;
       }
 
-      if (file.type.startsWith('image/')) {
-        const fileUrl = URL.createObjectURL(file);
+      const isImg = file.type.startsWith('image/');
+      const isVid = file.type.startsWith('video/');
+      if (!isImg && !isVid) {
+        alert('Chỉ hỗ trợ tệp hình ảnh hoặc video ngắn.');
+        window.clearChatMediaPreview();
+        return;
+      }
+      if (isImg && window.VNU_CONFIG && file.size > window.VNU_CONFIG.MAX_IMAGE_BYTES) {
+        alert('Dung lượng hình ảnh vượt quá giới hạn 2 MB.');
+        window.clearChatMediaPreview();
+        return;
+      }
+      if (isVid && window.VNU_CONFIG && file.size > window.VNU_CONFIG.MAX_VIDEO_BYTES) {
+        alert('Dung lượng video ngắn vượt quá giới hạn 10 MB.');
+        window.clearChatMediaPreview();
+        return;
+      }
+
+      chatMediaPreviewUrl = URL.createObjectURL(file);
+      if (isImg) {
         if (chatImgPreview) {
-          chatImgPreview.src = fileUrl;
+          chatImgPreview.src = chatMediaPreviewUrl;
           chatImgPreview.classList.remove('d-none');
         }
         if (chatVideoPreview) {
           chatVideoPreview.classList.add('d-none');
-          chatVideoPreview.src = '';
+          chatVideoPreview.removeAttribute('src');
         }
-        chatMediaBox.classList.remove('d-none');
-      } else if (file.type.startsWith('video/')) {
-        const fileUrl = URL.createObjectURL(file);
+      } else {
         if (chatVideoPreview) {
-          chatVideoPreview.src = fileUrl;
+          chatVideoPreview.src = chatMediaPreviewUrl;
           chatVideoPreview.classList.remove('d-none');
         }
         if (chatImgPreview) {
           chatImgPreview.classList.add('d-none');
           chatImgPreview.src = '';
         }
-        chatMediaBox.classList.remove('d-none');
-      } else {
-        alert('Chỉ hỗ trợ tệp hình ảnh hoặc video ngắn.');
-        window.clearChatMediaPreview();
       }
+      chatMediaBox.classList.remove('d-none');
     });
   }
 
-  // Xử lý các nút Tin nhắn nhanh (Quick Replies)
+  // Bấm nút Tin nhắn mẫu nhanh -> Điền sẵn chữ vào ô nhập
   const quickRepliesContainer = document.getElementById('chat-quick-replies');
   const chatTextInput = document.getElementById('chat-text-input');
 
   if (quickRepliesContainer && chatTextInput) {
     quickRepliesContainer.addEventListener('click', (e) => {
       const btn = e.target.closest('.chat-quick-reply-btn');
-      if (btn) {
+      if (btn && !chatTextInput.disabled) {
         const text = btn.getAttribute('data-reply') || btn.textContent.trim();
         chatTextInput.value = text;
         chatTextInput.focus();
@@ -142,7 +172,6 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // Tự động cuộn xuống đáy khi mở trang chat
   if (document.getElementById('chat-messages-container')) {
     window.scrollToBottomChat();
   }

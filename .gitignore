@@ -3,6 +3,7 @@
 .env.local
 .env.*.local
 repomix-output*.xml
+repomix*.xml
 
 # Thư mục tạm của Vercel & Node
 .vercel

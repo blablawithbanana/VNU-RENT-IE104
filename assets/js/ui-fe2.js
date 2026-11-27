@@ -42,6 +42,7 @@
   window.resetPostImagePreview = function () {
     const input = document.getElementById('post-image-input');
     const preview = document.getElementById('post-image-preview');
+    if (input) input.setCustomValidity('');
     if (input) input.value = '';
     window.clearPostImageError();
     if (preview) {
@@ -86,20 +87,32 @@
         previewUrl = null;
       }
       preview.replaceChildren();
+      imageInput.setCustomValidity('');
 
       const file = imageInput.files && imageInput.files[0];
-      const sizeError = 'Dung lượng hình ảnh vượt quá giới hạn 2 MB.';
-      if (file && file.type.startsWith('image/') && file.size > window.VNU_CONFIG.MAX_IMAGE_BYTES) {
-        window.showPostImageError(sizeError);
-      } else {
+      if (!file) {
         window.clearPostImageError();
-      }
-
-      if (!file || !file.type.startsWith('image/')) {
         preview.classList.add('d-none');
         return;
       }
 
+      if (!file.type.startsWith('image/')) {
+        const typeError = 'Vui lòng chọn tệp hình ảnh hợp lệ.';
+        imageInput.setCustomValidity(typeError);
+        window.showPostImageError(typeError);
+        preview.classList.add('d-none');
+        return;
+      }
+
+      if (file.size > window.VNU_CONFIG.MAX_IMAGE_BYTES) {
+        const sizeError = 'Dung lượng hình ảnh vượt quá giới hạn 2 MB.';
+        imageInput.setCustomValidity(sizeError);
+        window.showPostImageError(sizeError);
+        preview.classList.add('d-none');
+        return;
+      }
+
+      window.clearPostImageError();
       previewUrl = URL.createObjectURL(file);
       const image = document.createElement('img');
       image.src = previewUrl;

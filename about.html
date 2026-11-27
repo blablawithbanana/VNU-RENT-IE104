@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Giới thiệu về VNU-RENT — Nền tảng chia sẻ đồ dùng sinh viên Làng ĐHQG</title>
+  <!-- Bootstrap 5.3 & Bootstrap Icons CDN -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
+  <!-- CSS Gốc Dùng Chung (KHÔNG SỬA) -->
+  <link rel="stylesheet" href="assets/css/base.css">
+  <!-- CSS Riêng của TV3 -->
+  <link rel="stylesheet" href="assets/css/fe3.css">
+</head>
+<body>
+
+  <!-- HEADER / NAVBAR DÙNG CHUNG RESPONSIVE (KHÔNG SỬA ID) -->
+  <header class="sticky-top">
+    <nav class="navbar navbar-expand-lg ct-navbar" id="global-navbar">
+      <div class="container">
+        <a href="index.html" class="ct-brand d-flex align-items-center gap-2">
+          <i class="bi bi-bag-heart-fill text-danger"></i>
+          <span>VNU-RENT</span>
+        </a>
+
+        <!-- Nút thu gọn Menu trên điện thoại -->
+        <button class="navbar-toggler border-0 shadow-none" type="button" data-bs-toggle="collapse" data-bs-target="#globalNavbarMenu" aria-controls="globalNavbarMenu" aria-expanded="false" aria-label="Mở menu">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse justify-content-end" id="globalNavbarMenu">
+          <ul class="navbar-nav align-items-lg-center gap-1 gap-lg-2 mt-2 mt-lg-0">
+            <li class="nav-item">
+              <a href="index.html" class="nav-link ct-nav-link"><i class="bi bi-house-door me-1"></i>Trang chủ</a>
+            </li>
+            <li class="nav-item">
+              <a href="about.html" class="nav-link ct-nav-link active bg-white bg-opacity-50"><i class="bi bi-info-circle me-1"></i>Giới thiệu</a>
+            </li>
+            <li class="nav-item">
+              <a href="borrow-requests.html" class="nav-link ct-nav-link"><i class="bi bi-megaphone me-1"></i>Cần mượn</a>
+            </li>
+            <li class="nav-item">
+              <a href="chat.html" class="nav-link ct-nav-link position-relative" id="nav-chat-link">
+                <i class="bi bi-chat-dots me-1"></i>Chat
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="auth.html" class="nav-link ct-nav-link" id="nav-auth-link">
+                <i class="bi bi-person-circle me-1"></i><span id="nav-user-label">Đăng nhập</span>
+              </a>
+            </li>
+            <li class="nav-item ms-lg-2 mt-2 mt-lg-0">
+              <a href="post-item.html" class="btn btn-ct-orange w-100 w-lg-auto" id="nav-post-btn">
+                <i class="bi bi-pencil-square me-1"></i>Đăng tin
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <!-- PHẦN NỘI DUNG CHÍNH: CÁC THÀNH VIÊN CHỈ CODE BÊN TRONG THẺ <main> NÀY -->
+  <main id="app-main">
+    <div class="container">
+
+      <!-- 1. HERO BANNER: MỤC TIÊU RA ĐỜI -->
+      <section class="about-hero">
+        <span class="badge bg-warning text-dark px-3 py-2 rounded-pill mb-3 fw-bold">
+          <i class="bi bi-stars me-1"></i>Giải pháp Kinh tế tuần hoàn Sinh viên
+        </span>
+        <h1 class="about-hero-title">
+          Kết nối &amp; Chia sẻ đồ dùng tại <span>Làng ĐHQG TP.HCM</span>
+        </h1>
+        <p class="lead text-muted mx-auto" style="max-width: 780px;">
+          <strong>VNU-RENT</strong> là nền tảng trao đổi và cho mượn đồ dùng ngang hàng (P2P) tiên phong dành riêng cho cộng đồng sinh viên các trường thuộc Đại học Quốc gia TP.HCM. Chúng tôi hướng tới việc giải quyết bài toán lãng phí tài nguyên, tiết kiệm chi phí sinh hoạt học tập và xây dựng một cộng đồng ký túc xá văn minh, gắn kết.
+        </p>
+        <div class="d-flex justify-content-center gap-3 mt-4 flex-wrap">
+          <a href="index.html" class="btn btn-ct-orange px-4 py-2">
+            <i class="bi bi-search me-1"></i>Khám phá đồ dùng
+          </a>
+          <a href="post-item.html" class="btn btn-outline-dark px-4 py-2">
+            <i class="bi bi-plus-circle me-1"></i>Đăng tin cho mượn
+          </a>
+        </div>
+      </section>
+
+      <!-- 2. BỐN NHÓM HÀNG TRỌNG TÂM -->
+      <section class="mb-5">
+        <div class="text-center mb-4">
+          <h2 class="h3 fw-bold">4 Nhóm Hàng Trọng Tâm Của Sinh Viên</h2>
+          <p class="text-muted">Các danh mục đồ dùng thiết yếu được chia sẻ nhiều nhất quanh khuôn viên Làng Đại học</p>
+        </div>
+        <div class="row g-4">
+          <!-- Hạng mục 1: Điện tử -->
+          <div class="col-lg-3 col-sm-6">
+            <div class="about-cat-box">
+              <div class="about-cat-icon">
+                <i class="bi bi-laptop"></i>
+              </div>
+              <h5 class="fw-bold mb-2">Điện tử</h5>
+              <p class="small text-muted mb-3">Hỗ trợ các kỳ thi và đồ án gấp rút khi thiết bị cá nhân gặp sự cố.</p>
+              <div class="badge bg-light text-dark border p-2 w-100 text-start">
+                <small class="d-block text-truncate">&bull; Máy tính Casio FX-580VNX</small>
+                <small class="d-block text-truncate">&bull; Sạc dự phòng, chuột, bàn phím</small>
+                <small class="d-block text-truncate">&bull; Loa bluetooth thuyết trình</small>
+              </div>
+              <a href="category.html?cat=dien-tu" class="btn btn-sm btn-outline-warning text-dark mt-3 w-100">
+                Xem đồ điện tử &rarr;
+              </a>
+            </div>
+          </div>
+
+          <!-- Hạng mục 2: Tài liệu -->
+          <div class="col-lg-3 col-sm-6">
+            <div class="about-cat-box">
+              <div class="about-cat-icon">
+                <i class="bi bi-book"></i>
+              </div>
+              <h5 class="fw-bold mb-2">Tài liệu</h5>
+              <p class="small text-muted mb-3">Tài liệu học tập, giáo trình chuyên ngành và đề cương ôn thi các khóa trước.</p>
+              <div class="badge bg-light text-dark border p-2 w-100 text-start">
+                <small class="d-block text-truncate">&bull; Giáo trình Giải tích, Đại số</small>
+                <small class="d-block text-truncate">&bull; Đề cương ôn thi cuối kỳ</small>
+                <small class="d-block text-truncate">&bull; Sách ngoại ngữ TOEIC, IELTS</small>
+              </div>
+              <a href="category.html?cat=tai-lieu" class="btn btn-sm btn-outline-warning text-dark mt-3 w-100">
+                Xem tài liệu học tập &rarr;
+              </a>
+            </div>
+          </div>
+
+          <!-- Hạng mục 3: Quần áo -->
+          <div class="col-lg-3 col-sm-6">
+            <div class="about-cat-box">
+              <div class="about-cat-icon">
+                <i class="bi bi-person-badge"></i>
+              </div>
+              <h5 class="fw-bold mb-2">Quần áo</h5>
+              <p class="small text-muted mb-3">Trang phục sự kiện, chụp kỷ yếu hoặc học phần ngắn hạn chỉ dùng 1-2 lần.</p>
+              <div class="badge bg-light text-dark border p-2 w-100 text-start">
+                <small class="d-block text-truncate">&bull; Áo vest thuyết trình đồ án</small>
+                <small class="d-block text-truncate">&bull; Áo dài kỷ yếu, lễ hội</small>
+                <small class="d-block text-truncate">&bull; Đồ giáo dục thể chất / QP</small>
+              </div>
+              <a href="category.html?cat=quan-ao" class="btn btn-sm btn-outline-warning text-dark mt-3 w-100">
+                Xem quần áo sự kiện &rarr;
+              </a>
+            </div>
+          </div>
+
+          <!-- Hạng mục 4: Dụng cụ -->
+          <div class="col-lg-3 col-sm-6">
+            <div class="about-cat-box">
+              <div class="about-cat-icon">
+                <i class="bi bi-tools"></i>
+              </div>
+              <h5 class="fw-bold mb-2">Dụng cụ</h5>
+              <p class="small text-muted mb-3">Công cụ thực hành chuyên ngành, thiết bị dã ngoại và thể thao ngoài trời.</p>
+              <div class="badge bg-light text-dark border p-2 w-100 text-start">
+                <small class="d-block text-truncate">&bull; Bộ thực hành mạch điện, IC</small>
+                <small class="d-block text-truncate">&bull; Lều cắm trại, bạt trải picnic</small>
+                <small class="d-block text-truncate">&bull; Vợt cầu lông, bộ tua vít đa năng</small>
+              </div>
+              <a href="category.html?cat=dung-cu" class="btn btn-sm btn-outline-warning text-dark mt-3 w-100">
+                Xem dụng cụ thực hành &rarr;
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 3. QUY TRÌNH 4 BƯỚC MƯỢN ĐỒ AN TOÀN -->
+      <section class="mb-5">
+        <div class="text-center mb-4">
+          <h2 class="h3 fw-bold">Quy Trình 4 Bước Mượn Đồ An Toàn</h2>
+          <p class="text-muted">Đơn giản, minh bạch và tiện lợi giữa các sinh viên cùng khu vực Làng Đại học</p>
+        </div>
+        <div class="row g-4">
+          <div class="col-lg-3 col-md-6">
+            <div class="about-step-card">
+              <div class="about-step-num">1</div>
+              <div class="mt-2">
+                <h6 class="fw-bold text-dark mb-2"><i class="bi bi-search text-warning me-1"></i>Tìm kiếm &amp; Khám phá</h6>
+                <p class="small text-muted mb-0">
+                  Tìm món đồ bạn đang cần theo danh mục hoặc khu vực (KTX Khu A, Khu B, UIT, Bách Khoa,...), hoặc đăng yêu cầu cần mượn gấp.
+                </p>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-3 col-md-6">
+            <div class="about-step-card">
+              <div class="about-step-num">2</div>
+              <div class="mt-2">
+                <h6 class="fw-bold text-dark mb-2"><i class="bi bi-chat-dots-fill text-warning me-1"></i>Chat &amp; Thỏa thuận</h6>
+                <p class="small text-muted mb-0">
+                  Nhắn tin trực tiếp P2P với chủ tin để kiểm tra tình trạng vật dụng, hẹn thời gian mượn, mức phí hoặc tiền cọc hợp lý.
+                </p>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-3 col-md-6">
+            <div class="about-step-card">
+              <div class="about-step-num">3</div>
+              <div class="mt-2">
+                <h6 class="fw-bold text-dark mb-2"><i class="bi bi-geo-alt-fill text-warning me-1"></i>Gặp &amp; Nhận đồ</h6>
+                <p class="small text-muted mb-0">
+                  Hẹn gặp trực tiếp tại địa điểm công cộng tiện lợi quanh Làng ĐHQG (như sảnh KTX, Nhà văn hóa SV hoặc khuôn viên trường).
+                </p>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-3 col-md-6">
+            <div class="about-step-card">
+              <div class="about-step-num">4</div>
+              <div class="mt-2">
+                <h6 class="fw-bold text-dark mb-2"><i class="bi bi-arrow-repeat text-warning me-1"></i>Hoàn trả &amp; Đánh giá</h6>
+                <p class="small text-muted mb-0">
+                  Hoàn trả đồ dùng đúng hạn và nguyên vẹn tình trạng ban đầu, nhận lại tiền cọc và để lại phản hồi tốt đẹp cho người cho mượn.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 4. CÂU HỎI THƯỜNG GẶP (FAQ ACCORDION) -->
+      <section class="mb-5">
+        <div class="text-center mb-4">
+          <h2 class="h3 fw-bold">Câu Hỏi Thường Gặp (FAQ)</h2>
+          <p class="text-muted">Những điều bạn cần biết khi tham gia cộng đồng mượn đồ VNU-RENT</p>
+        </div>
+        <div class="row justify-content-center">
+          <div class="col-lg-9">
+            <div class="accordion about-accordion" id="faqAccordion">
+              
+              <!-- Câu 1 -->
+              <div class="accordion-item mb-2 border rounded">
+                <h3 class="accordion-header" id="headingOne">
+                  <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                    <i class="bi bi-question-circle-fill text-warning me-2"></i>1. Mượn đồ trên VNU-RENT có mất phí không?
+                  </button>
+                </h3>
+                <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#faqAccordion">
+                  <div class="accordion-body text-secondary small lh-base">
+                    Phần lớn các món đồ học tập, giáo trình trên nền tảng được các bạn sinh viên chia sẻ <strong>hoàn toàn miễn phí</strong>. Với những thiết bị có giá trị cao hoặc trang phục đặc thù, người cho mượn có thể đặt một mức phí tượng trưng (theo giờ hoặc ngày) nhằm bù đắp hao mòn và chi phí bảo quản. Mọi mức giá đều được hiển thị công khai, minh bạch.
+                  </div>
+                </div>
+              </div>
+
+              <!-- Câu 2 -->
+              <div class="accordion-item mb-2 border rounded">
+                <h3 class="accordion-header" id="headingTwo">
+                  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                    <i class="bi bi-shield-check text-warning me-2"></i>2. Làm sao đảm bảo an toàn và uy tín giữa các sinh viên?
+                  </button>
+                </h3>
+                <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#faqAccordion">
+                  <div class="accordion-body text-secondary small lh-base">
+                    Tất cả tài khoản trên VNU-RENT đều đăng ký thông qua email sinh viên hoặc tài khoản định danh cá nhân. Hai bên có thể thỏa thuận xem thẻ sinh viên và giữ cọc (tiền mặt hoặc giấy tờ cam kết) khi bàn giao đồ dùng. VNU-RENT khuyến khích các bạn giao dịch tại sảnh KTX hoặc khuôn viên trường học đông người.
+                  </div>
+                </div>
+              </div>
+
+              <!-- Câu 3 -->
+              <div class="accordion-item mb-2 border rounded">
+                <h3 class="accordion-header" id="headingThree">
+                  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                    <i class="bi bi-exclamation-triangle-fill text-warning me-2"></i>3. Nếu đồ dùng bị hư hỏng hoặc thất lạc trong quá trình mượn thì sao?
+                  </button>
+                </h3>
+                <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#faqAccordion">
+                  <div class="accordion-body text-secondary small lh-base">
+                    Trước khi nhận đồ, người mượn nên chụp ảnh hoặc quay video ngắn xác nhận tình trạng ban đầu gửi qua khung Chat P2P của hệ thống. Nếu xảy ra hư hỏng do lỗi chủ quan trong quá trình sử dụng, người mượn có trách nhiệm sửa chữa hoặc đền bù giá trị tương đương theo thỏa thuận ban đầu đã xác nhận trong chat.
+                  </div>
+                </div>
+              </div>
+
+              <!-- Câu 4 -->
+              <div class="accordion-item mb-2 border rounded">
+                <h3 class="accordion-header" id="headingFour">
+                  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+                    <i class="bi bi-robot text-warning me-2"></i>4. Trợ lý AI VNU-RENT hỗ trợ tôi như thế nào?
+                  </button>
+                </h3>
+                <div id="collapseFour" class="accordion-collapse collapse" aria-labelledby="headingFour" data-bs-parent="#faqAccordion">
+                  <div class="accordion-body text-secondary small lh-base">
+                    Trợ lý AI tích hợp mô hình Google Gemini giúp bạn tìm kiếm đồ dùng theo ngữ cảnh thông minh (ví dụ: <em>"Mình cần áo vest nam size L cho buổi bảo vệ đồ án chiều nay ở UIT"</em>), gợi ý nhanh các tin đăng sẵn có trong cơ sở dữ liệu và hướng dẫn các bước thỏa thuận an toàn.
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 5. THÔNG TIN NHÓM PHÁT TRIỂN (NHÓM 6 — UIT IE104) -->
+      <section class="mb-4">
+        <div class="text-center mb-4">
+          <span class="about-team-badge">Đồ Án Môn Học IE104 — Internet và Công nghệ Web</span>
+          <h2 class="h3 fw-bold">Đội Ngũ Phát Triển Dự Án — Nhóm 6</h2>
+          <p class="text-muted">Trường Đại học Công nghệ Thông tin — Đại học Quốc gia TP.HCM (UIT)</p>
+        </div>
+
+        <div class="row g-4">
+          <!-- Thành viên 1 -->
+          <div class="col-lg-3 col-sm-6">
+            <div class="about-team-card">
+              <div class="rounded-circle bg-warning bg-opacity-25 text-warning mx-auto d-flex align-items-center justify-content-center mb-3" style="width: 64px; height: 64px;">
+                <i class="bi bi-person-fill fs-2 text-dark"></i>
+              </div>
+              <h6 class="fw-bold mb-1">Thành viên 1</h6>
+              <div class="badge bg-secondary mb-2">Frontend — TV1</div>
+              <p class="small text-muted mb-0">
+                Phụ trách Trang chủ (index.html), Tìm kiếm &amp; Lọc danh mục (category.html) và Nhu cầu cần mượn (borrow-requests.html).
+              </p>
+            </div>
+          </div>
+
+          <!-- Thành viên 2 -->
+          <div class="col-lg-3 col-sm-6">
+            <div class="about-team-card">
+              <div class="rounded-circle bg-warning bg-opacity-25 text-warning mx-auto d-flex align-items-center justify-content-center mb-3" style="width: 64px; height: 64px;">
+                <i class="bi bi-person-fill fs-2 text-dark"></i>
+              </div>
+              <h6 class="fw-bold mb-1">Thành viên 2</h6>
+              <div class="badge bg-secondary mb-2">Frontend — TV2</div>
+              <p class="small text-muted mb-0">
+                Phụ trách Đăng nhập / Đăng ký (auth.html), Đăng tin cho mượn (post-item.html) và Chi tiết đồ dùng (item-detail.html).
+              </p>
+            </div>
+          </div>
+
+          <!-- Thành viên 3 -->
+          <div class="col-lg-3 col-sm-6">
+            <div class="about-team-card border-warning">
+              <div class="rounded-circle bg-warning text-dark mx-auto d-flex align-items-center justify-content-center mb-3" style="width: 64px; height: 64px;">
+                <i class="bi bi-person-check-fill fs-2"></i>
+              </div>
+              <h6 class="fw-bold mb-1">Thành viên 3</h6>
+              <div class="badge bg-warning text-dark mb-2">Frontend — TV3</div>
+              <p class="small text-muted mb-0">
+                Phụ trách Trang cá nhân &amp; Quản lý tin (profile.html), Trang giới thiệu (about.html) và Khung giao diện Chat P2P (chat.html).
+              </p>
+            </div>
+          </div>
+
+          <!-- Nhóm trưởng -->
+          <div class="col-lg-3 col-sm-6">
+            <div class="about-team-card">
+              <div class="rounded-circle bg-warning bg-opacity-25 text-warning mx-auto d-flex align-items-center justify-content-center mb-3" style="width: 64px; height: 64px;">
+                <i class="bi bi-star-fill fs-2 text-warning"></i>
+              </div>
+              <h6 class="fw-bold mb-1">Nhóm trưởng</h6>
+              <div class="badge bg-dark text-white mb-2">Lead &amp; BaaS</div>
+              <p class="small text-muted mb-0">
+                Thiết kế CSDL Supabase, RLS, Storage Media, kết nối Chat Realtime (chat-service.js) và Trợ lý AI Gemini Serverless.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+    </div>
+  </main>
+
+  <!-- FOOTER DÙNG CHUNG -->
+  <footer class="ct-footer" id="global-footer">
+    <div class="container d-flex flex-wrap justify-content-between align-items-center gap-2">
+      <div>
+        <strong class="text-dark">Nền tảng cho mượn đồ dùng sinh viên Làng ĐHQG TP.HCM - VNU-RENT</strong>
+        <p class="mb-0 mt-1">Đồ án môn IE104 - Internet và Công nghệ Web | Trường ĐH Công nghệ Thông tin (UIT)</p>
+      </div>
+      <div class="text-md-end">
+        <span>Nhóm 6 &copy; 2026</span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- 1. Bootstrap JS Bundle & Supabase CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+  <!-- 2. JS Giao diện của thành viên TV3 -->
+  <script src="assets/js/ui-fe3.js"></script>
+
+  <!-- 3. JS Dịch vụ Supabase dùng chung -->
+  <script src="assets/js/services/supabase-config.js"></script>
+</body>
+</html>
